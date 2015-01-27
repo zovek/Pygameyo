@@ -51,7 +51,7 @@ class Block(pygame.sprite.Sprite):
             self.rect.y = 0
             self.rect.x = x
 class Player(Block):
-    def update(self):
+    def update_m(self):
         pos = pygame.mouse.get_pos()
         self.rect.x=pos[0]
         self.rect.y=pos[1]
@@ -63,7 +63,7 @@ all_sprites_list = pygame.sprite.Group()
 red_blocks = pygame.sprite.Group()
 black_blocks = pygame.sprite.Group()
 #creating player sprite
-player = Block(GREEN, 10,10)
+player = Player(GREEN, 10,10)
 all_sprites_list.add(player)
 #creating sprites
 for i in range(20):
@@ -94,13 +94,11 @@ while not done:
 
     
     #Game logic here
-    pos = pygame.mouse.get_pos()
-
-    player.rect.x=pos[0]
-    player.rect.y=pos[1]
+    player.update_m()
     
     black_hit_list = pygame.sprite.spritecollide(player, black_blocks, True)
     red_hit_list = pygame.sprite.spritecollide(player, red_blocks, True)
+
     for block in red_hit_list:
         lives -= 1
         print(lives)
@@ -120,6 +118,7 @@ while not done:
         pygame.draw.line(screen,BLACK, [0+x_offset,0],[0+x_offset,yres],1)
     for y_offset in range(0, yres, 5):
         pygame.draw.line(screen,BLACK, [0,0+y_offset],[xres,0+y_offset],1)
+
     for block in red_blocks:
         block.update_r()
     for block in black_blocks:
