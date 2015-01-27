@@ -1,8 +1,8 @@
 #version 0.0.1a
 
 #importing pygame
-import pygame, random, math
-from pygame import *
+import pygame, random, math, sys
+from pygame.locals import *
 pygame.init()
 
 #defining color variables
@@ -13,12 +13,13 @@ GREEN = (  0,255,  0)
 BLUE  = (  0,  0,255)
 
 #window settings
-size = (800, 800)
-screen = pygame.display.set_mode(size)
+xres = 1280
+yres = 720
+screen = pygame.display.set_mode((xres, yres), DOUBLEBUF)
 pygame.display.set_caption("Test Pygame Game")
 
 #setting fps variable
-clock = pygame.time.Clock()
+fpsClock = pygame.time.Clock()
 
 #creating a variable that starts main loop.
 done = False
@@ -55,11 +56,11 @@ for i in range(20):
     r_block = Block(RED, 20,20)
 
 
-    b_block.rect.x= random.randrange(800-20)
-    b_block.rect.y= random.randrange(800-20)
+    b_block.rect.x= random.randrange(xres-20)
+    b_block.rect.y= random.randrange(yres-20)
 
-    r_block.rect.x= random.randrange(800-20)
-    r_block.rect.y= random.randrange(800-20)
+    r_block.rect.x= random.randrange(xres-20)
+    r_block.rect.y= random.randrange(yres-20)
     
     block_list.add(b_block)
     block_list.add(r_block)
@@ -101,10 +102,10 @@ while not done:
     all_sprites_list.draw(screen)
    
     
-    for x_offset in range(0, 800, 5):
-        pygame.draw.line(screen,BLACK, [0+x_offset,0],[0+x_offset,800],1)
-    for y_offset in range(0, 800, 5):
-        pygame.draw.line(screen,BLACK, [0,0+y_offset],[800,0+y_offset],1)
+    for x_offset in range(0, xres, 5):
+        pygame.draw.line(screen,BLACK, [0+x_offset,0],[0+x_offset,xres],1)
+    for y_offset in range(0, yres, 5):
+        pygame.draw.line(screen,BLACK, [0,0+y_offset],[yres,0+y_offset],1)
     
     
 
@@ -123,7 +124,7 @@ while not done:
 
     pygame.display.flip()
 
-    clock.tick(60)
+    fpsClock.tick(60)
 
 #after exiting main loop this closes the game
 pygame.quit()
