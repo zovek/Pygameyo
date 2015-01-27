@@ -15,6 +15,7 @@ xres = 1280
 yres = 720
 screen = pygame.display.set_mode((xres, yres), DOUBLEBUF)
 pygame.display.set_caption("Test Pygame Game")
+pygame.mouse.set_visible(False)
 
 #setting fps variable
 fpsClock = pygame.time.Clock()
