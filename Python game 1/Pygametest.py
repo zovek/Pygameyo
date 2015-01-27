@@ -37,27 +37,12 @@ class Block(pygame.sprite.Sprite):
         self.image = pygame.Surface([width, height])
         self.image.fill(color)
         self.rect = self.image.get_rect()
-        
-    def update_r(self):
+    def update(self):
         y = random.randint(0,yres-20)
         self.rect.x += random.randint(1, 5)
         self.rect.y += random.randint(1, 5)
         self.rect.x -= random.randint(1, 5)
         self.rect.y -= random.randint(1, 5)
-        if self.rect.x >= xres-20:
-            self.rect.x = xres-20
-        if self.rect.x <= 0:
-            self.rect.x = 0
-        if self.rect.y >= yres-20:
-            self.rect.y = yres-20
-        if self.rect.y <= 0:
-            self.rect.y = 0
-    def update_b(self):
-        x = random.randint(0,xres- 20)
-        self.rect.y += random.randint(1, 5)
-        self.rect.x += random.randint(1, 5)
-        self.rect.y -= random.randint(1, 5)
-        self.rect.x -= random.randint(1, 5)
         if self.rect.x >= xres-20:
             self.rect.x = xres-20
         if self.rect.x <= 0:
@@ -136,9 +121,9 @@ while not done:
         pygame.draw.line(screen,BLACK, [0,0+y_offset],[xres,0+y_offset],1)
 
     for block in red_blocks:
-        block.update_r()
+        block.update()
     for block in black_blocks:
-        block.update_b()
+        block.update()
     
 
     
