@@ -1,8 +1,8 @@
+#version 0.0.1a
+
 #importing pygame
-import pygame
+import pygame, random, math
 pygame.init()
-import random
-import math
 
 #defining color variables
 BLACK = (  0,  0,  0)
