@@ -44,18 +44,28 @@ class Block(pygame.sprite.Sprite):
         self.rect.y += random.randint(1, 5)
         self.rect.x -= random.randint(1, 5)
         self.rect.y -= random.randint(1, 5)
-        if self.rect.x >= xres:
-            self.rect.x =0
-            self.rect.y = y
+        if self.rect.x >= xres-20:
+            self.rect.x = xres-20
+        if self.rect.x <= 0:
+            self.rect.x = 0
+        if self.rect.y >= yres-20:
+            self.rect.y = yres-20
+        if self.rect.y <= 0:
+            self.rect.y = 0
     def update_b(self):
         x = random.randint(0,xres- 20)
         self.rect.y += random.randint(1, 5)
         self.rect.x += random.randint(1, 5)
         self.rect.y -= random.randint(1, 5)
         self.rect.x -= random.randint(1, 5)
-        if self.rect.y >= yres:
+        if self.rect.x >= xres-20:
+            self.rect.x = xres-20
+        if self.rect.x <= 0:
+            self.rect.x = 0
+        if self.rect.y >= yres-20:
+            self.rect.y = yres-20
+        if self.rect.y <= 0:
             self.rect.y = 0
-            self.rect.x = x
 class Player(Block):
     def update_m(self):
         pos = pygame.mouse.get_pos()
