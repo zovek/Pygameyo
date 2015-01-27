@@ -102,10 +102,10 @@ while not done:
     all_sprites_list.draw(screen)
    
     
-    for x_offset in range(0, xres, 5):
-        pygame.draw.line(screen,BLACK, [0+x_offset,0],[0+x_offset,xres],1)
-    for y_offset in range(0, yres, 5):
-        pygame.draw.line(screen,BLACK, [0,0+y_offset],[yres,0+y_offset],1)
+    for x_offset in range(0, yres, 5):
+        pygame.draw.line(screen,BLACK, [0+x_offset,0],[0+x_offset,yres],1)
+    for y_offset in range(0, xres, 5):
+        pygame.draw.line(screen,BLACK, [0,0+y_offset],[xres,0+y_offset],1)
     
     
 
