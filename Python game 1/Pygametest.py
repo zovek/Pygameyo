@@ -25,7 +25,8 @@ done = False
 #global variables
 x_offset = 0
 y_offset = 0
-
+score = 0
+lives = 3
 
 
 #***classes under***
@@ -36,9 +37,24 @@ class Block(pygame.sprite.Sprite):
         self.image.fill(color)
         self.rect = self.image.get_rect()
         
+    def update_r(self):
+        y = random.randint(0,yres-20)
+        self.rect.x += 1
+        if self.rect.x >= xres:
+            self.rect.x =0
+            self.rect.y = y
+    def update_b(self):
+        x= random.randint(0,xres- 20)
+        self.rect.y += 1
+        if self.rect.y >= yres:
+            self.rect.y = 0
+            self.rect.x = x
+class Player(Block):
+    def update(self):
+        pos = pygame.mouse.get_pos()
+        self.rect.x=pos[0]
+        self.rect.y=pos[1]
     
-
-
 
 #defining groups
 block_list = pygame.sprite.Group()
@@ -68,8 +84,7 @@ for i in range(20):
     black_blocks.add(b_block)
     
 
-score = 0
-lives = 3
+
 #*********main program loop**********
 while not done:
     for event in pygame.event.get():
@@ -93,6 +108,10 @@ while not done:
     for block in black_hit_list:
         score += 1
         print(score)
+    for block in red_blocks:
+        block.update_r()
+    for block in black_blocks:
+        block.update_b()
 
     
     #all drawing here
