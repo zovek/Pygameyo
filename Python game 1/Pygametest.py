@@ -40,13 +40,19 @@ class Block(pygame.sprite.Sprite):
         
     def update_r(self):
         y = random.randint(0,yres-20)
-        self.rect.x += 1
+        self.rect.x += random.randint(1, 5)
+        self.rect.y += random.randint(1, 5)
+        self.rect.x -= random.randint(1, 5)
+        self.rect.y -= random.randint(1, 5)
         if self.rect.x >= xres:
             self.rect.x =0
             self.rect.y = y
     def update_b(self):
-        x= random.randint(0,xres- 20)
-        self.rect.y += 1
+        x = random.randint(0,xres- 20)
+        self.rect.y += random.randint(1, 5)
+        self.rect.x += random.randint(1, 5)
+        self.rect.y -= random.randint(1, 5)
+        self.rect.x -= random.randint(1, 5)
         if self.rect.y >= yres:
             self.rect.y = 0
             self.rect.x = x
