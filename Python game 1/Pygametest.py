@@ -2,6 +2,7 @@
 
 #importing pygame
 import pygame, random, math
+from pygame import *
 pygame.init()
 
 #defining color variables
