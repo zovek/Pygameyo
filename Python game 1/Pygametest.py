@@ -29,7 +29,6 @@ y_offset = 0
 score = 0
 lives = 3
 
-
 #***classes under***
 class Block(pygame.sprite.Sprite):
     def __init__(self, color, width, height):
@@ -53,11 +52,40 @@ class Block(pygame.sprite.Sprite):
         if self.rect.y <= 0:
             self.rect.y = 0
 class Player(Block):
+    x_speed = 0
+    y_speed = 0
+    
     def update_m(self):
         pos = pygame.mouse.get_pos()
         self.rect.x=pos[0]
         self.rect.y=pos[1]
-    
+    def update_k(self):
+        
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    self.x_speed = -3
+                if event.key == pygame.K_RIGHT:
+                    self.x_speed = 3
+                if event.key == pygame.K_UP:
+                    self.y_speed = -3
+                if event.key == pygame.K_DOWN:
+                    self.y_speed = 3
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_LEFT:
+                    self.x_speed = 0
+                if event.key == pygame.K_RIGHT:
+                    self.x_speed = 0
+                if event.key == pygame.K_UP:
+                    self.y_speed = 0
+                if event.key == pygame.K_DOWN:
+                    self.y_speed = 0 
+       
+
+        self.rect.x += self.x_speed 
+        self.rect.y += self.y_speed
+        print(self.rect.x, self.rect.y, self.x_speed, self.y_speed)
+
 
 #defining groups
 block_list = pygame.sprite.Group()
@@ -93,10 +121,9 @@ while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
-
-    
+        
     #Game logic here
-    player.update_m()
+    player.update_k()
     
     black_hit_list = pygame.sprite.spritecollide(player, black_blocks, True)
     red_hit_list = pygame.sprite.spritecollide(player, red_blocks, True)
@@ -110,7 +137,7 @@ while not done:
         score += 1
         print(score)
     
-
+    
     
     #all drawing here
     screen.fill(WHITE)
