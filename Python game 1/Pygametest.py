@@ -59,32 +59,10 @@ class Player(Block):
         pos = pygame.mouse.get_pos()
         self.rect.x=pos[0]
         self.rect.y=pos[1]
-    def update_k(self):
-        
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
-                    self.x_speed = -3
-                if event.key == pygame.K_RIGHT:
-                    self.x_speed = 3
-                if event.key == pygame.K_UP:
-                    self.y_speed = -3
-                if event.key == pygame.K_DOWN:
-                    self.y_speed = 3
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_LEFT:
-                    self.x_speed = 0
-                if event.key == pygame.K_RIGHT:
-                    self.x_speed = 0
-                if event.key == pygame.K_UP:
-                    self.y_speed = 0
-                if event.key == pygame.K_DOWN:
-                    self.y_speed = 0 
-       
-
+    def update_k(self):  
         self.rect.x += self.x_speed 
         self.rect.y += self.y_speed
-        print(self.rect.x, self.rect.y, self.x_speed, self.y_speed)
+        
 
 
 #defining groups
@@ -121,7 +99,26 @@ while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                player.x_speed = -3
+            if event.key == pygame.K_RIGHT:
+                player.x_speed = 3
+            if event.key == pygame.K_UP:
+                player.y_speed = -3
+            if event.key == pygame.K_DOWN:
+                player.y_speed = 3
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT:
+                player.x_speed = 0
+            if event.key == pygame.K_RIGHT:
+                player.x_speed = 0
+            if event.key == pygame.K_UP:
+                player.y_speed = 0
+            if event.key == pygame.K_DOWN:
+                player.y_speed = 0 
         
+            
     #Game logic here
     player.update_k()
     
